@@ -79,4 +79,9 @@ class EnrollmentServiceTest {
         Course saved = repository.findById(10).orElseThrow();
         assertEquals(1, saved.getEnrolledStudents().size());
     }
+
+    @Test
+    void shouldReturnFullNameInLastFirstNameOrder() {
+        assertEquals("Beckham Julian", student.getFullName());
+    }
 }
