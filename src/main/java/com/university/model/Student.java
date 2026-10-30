@@ -18,7 +18,7 @@ public class Student {
     public String getLN() { return lastName;};
 
     public String getFullName() {
-        return firstName + " " + lastName;
+        return lastName + " " + firstName;
     }
 
     @Override
