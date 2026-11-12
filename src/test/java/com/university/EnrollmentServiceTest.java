@@ -3,12 +3,16 @@ package com.university;
 import com.university.model.Course;
 import com.university.model.Enrollment;
 import com.university.model.Student;
+import com.university.repository.CourseRepository;
 import com.university.repository.InMemoryCourseRepository;
 import com.university.service.EnrollmentService;
 import com.university.service.NotificationService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -83,5 +87,14 @@ class EnrollmentServiceTest {
     @Test
     void shouldReturnFullNameInLastFirstNameOrder() {
         assertEquals("Beckham Julian", student.getFullName());
+    }
+
+    @Test
+    void testEnrollNonExistentCourse_TriggersErrorLog() {
+        int nonExistentCourseId = 9999;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.enrollStudent(student, nonExistentCourseId);
+        });
     }
 }
