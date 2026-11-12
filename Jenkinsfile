@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Static Analysis') {
             steps {
-                bat 'mvn checkstyle:check'
+                sh 'mvn checkstyle:check'
             }
         }
         stage('Test') {
